@@ -1,4 +1,8 @@
-# Vector-io
+<p align=center>
+<!-- include photo -->
+<img src="assets/vio-logo-new-oct30-2024.png" width="300"/>
+</p>
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -12,10 +16,6 @@
   </a>
 </p>
 
-<p align=center>
-<!-- include photo -->
-<img src="assets/vio-logo-new-oct30-2024.png" width="200"/>
-</p>
 
 This library uses a universal format for vector datasets to easily export and import data from all vector databases.
 
