@@ -14,7 +14,7 @@
 
 <p align=center>
 <!-- include photo -->
-<!-- <img src="assets/vector-io-logo.png" width="200"/> -->
+<img src="assets/vio-logo-new-oct30-2024.png" width="200"/>
 </p>
 
 This library uses a universal format for vector datasets to easily export and import data from all vector databases.
