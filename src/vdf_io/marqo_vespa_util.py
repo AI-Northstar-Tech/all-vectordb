@@ -85,7 +85,7 @@ class VespaClient:
                 [f"{key}={value}" for key, value in query_params.items() if value]
             )
             url = f"{self.document_url}/document/v1/{schema}/{schema}/docid"
-            url = f'{url.strip("?")}?{query_string}'
+            url = f"{url.strip('?')}?{query_string}"
             print(f"{url=}")
             resp = self.http_client.get(url)
         except httpx.HTTPError as e:

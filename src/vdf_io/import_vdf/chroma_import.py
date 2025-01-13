@@ -123,7 +123,7 @@ class ImportChroma(ImportVDB):
                 parquet_files = self.get_parquet_files(final_data_path)
 
                 new_index_name = index_name + (
-                    f'_{namespace_meta["namespace"]}'
+                    f"_{namespace_meta['namespace']}"
                     if namespace_meta["namespace"]
                     else ""
                 )
