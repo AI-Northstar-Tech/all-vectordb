@@ -99,7 +99,7 @@ class ImportKDBAI(ImportVDB):
                 data_path = namespace_meta["data_path"]
                 final_data_path = self.get_final_data_path(data_path)
                 index_name = index_name + (
-                    f'_{namespace_meta["namespace"]}'
+                    f"_{namespace_meta['namespace']}"
                     if namespace_meta["namespace"]
                     else ""
                 )

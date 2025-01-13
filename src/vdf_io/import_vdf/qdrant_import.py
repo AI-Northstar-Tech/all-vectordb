@@ -313,12 +313,15 @@ class ImportQdrant(ImportVDB):
                         total_points = len(points)
 
                         num_parallel_threads = self.args.get("parallel", 5) or 5
-                        with concurrent.futures.ThreadPoolExecutor(
-                            max_workers=num_parallel_threads
-                        ) as executor, tqdm(
-                            total=total_points,
-                            desc=f"Uploading points in batches of {BATCH_SIZE} in {num_parallel_threads} threads",
-                        ) as pbar:
+                        with (
+                            concurrent.futures.ThreadPoolExecutor(
+                                max_workers=num_parallel_threads
+                            ) as executor,
+                            tqdm(
+                                total=total_points,
+                                desc=f"Uploading points in batches of {BATCH_SIZE} in {num_parallel_threads} threads",
+                            ) as pbar,
+                        ):
                             # Create a future to batch mapping to update progress bar correctly after each batch completion
                             future_to_batch = {
                                 executor.submit(

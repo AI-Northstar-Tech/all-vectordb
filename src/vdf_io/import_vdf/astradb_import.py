@@ -124,7 +124,7 @@ class ImportAstraDB(ImportVDB):
                 data_path = namespace_meta["data_path"]
                 final_data_path = self.get_final_data_path(data_path)
                 new_index_name = index_name + (
-                    f'_{namespace_meta["namespace"]}'
+                    f"_{namespace_meta['namespace']}"
                     if namespace_meta["namespace"]
                     else ""
                 )
@@ -162,7 +162,7 @@ class ImportAstraDB(ImportVDB):
 
                     self.session.execute(
                         f"CREATE TABLE IF NOT EXISTS {self.args['keyspace']}.{new_index_name}"
-                        f" (id text PRIMARY KEY, \"$vector\" vector<float,{namespace_meta['dimensions']}>)"
+                        f' (id text PRIMARY KEY, "$vector" vector<float,{namespace_meta["dimensions"]}>)'
                     )
                 parquet_files = self.get_parquet_files(final_data_path)
                 vectors = {}
@@ -208,7 +208,7 @@ class ImportAstraDB(ImportVDB):
             keys = list(set(vectors.keys()).union(set(metadata.keys())))
             for id in keys:
                 self.session.execute(
-                    f"INSERT INTO {self.args['keyspace']}.{collection.name} (id, \"$vector\", {', '.join(metadata[id].keys())}) "
+                    f'INSERT INTO {self.args["keyspace"]}.{collection.name} (id, "$vector", {", ".join(metadata[id].keys())}) '
                     f"VALUES ('{id}', {vectors[id]}, {', '.join([str(v) for v in metadata[id].values()])})"
                 )
             return len(vectors)
@@ -248,12 +248,15 @@ class ImportAstraDB(ImportVDB):
             for i in range(0, total_points, BATCH_SIZE)
         ]
 
-        with concurrent.futures.ThreadPoolExecutor(
-            max_workers=num_parallel_threads
-        ) as executor, tqdm(
-            total=total_points,
-            desc=f"Flushing to DB in batches of {BATCH_SIZE} in {num_parallel_threads} threads",
-        ) as pbar:
+        with (
+            concurrent.futures.ThreadPoolExecutor(
+                max_workers=num_parallel_threads
+            ) as executor,
+            tqdm(
+                total=total_points,
+                desc=f"Flushing to DB in batches of {BATCH_SIZE} in {num_parallel_threads} threads",
+            ) as pbar,
+        ):
             future_to_batch = {
                 executor.submit(flush_batch_to_db, collection, *batch): batch
                 for batch in batches
