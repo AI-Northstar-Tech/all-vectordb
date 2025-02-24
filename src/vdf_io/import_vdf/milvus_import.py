@@ -82,7 +82,7 @@ class ImportMilvus(ImportVDB):
                 self.set_dims(namespace_meta, collection_name)
                 data_path = namespace_meta["data_path"]
                 index_name = collection_name + (
-                    f'_{namespace_meta["namespace"]}'
+                    f"_{namespace_meta['namespace']}"
                     if namespace_meta["namespace"]
                     else ""
                 )

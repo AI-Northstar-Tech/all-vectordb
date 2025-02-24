@@ -225,7 +225,7 @@ def ask_for_text_column(args, file_path, df):
             # pick first non-null value
             non_null_value = df[col].dropna().iloc[0]
             if isinstance(non_null_value, str):
-                tqdm.write(f"{i+1}: {col}")
+                tqdm.write(f"{i + 1}: {col}")
                 text_column_options[i + 1] = col
         choice_correctly_entered = False
         while not choice_correctly_entered:
